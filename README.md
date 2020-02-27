@@ -1,6 +1,6 @@
-# push-js-sdk
+# Push JavaScript SDK
 
-Push by Techulus - JavaScript SDK
+Get custom real-time notifications on your iOS & Android devices
 
 ## Pre-requisites
 
