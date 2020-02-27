@@ -12,8 +12,8 @@ To run this SDK you'll need:
 
 ## Install
 
-Using NPM -> `npm i push-sdk`
-Using Yarn -> `yarn add push-sdk`
+- Using NPM -> `npm i push-sdk`
+- Using Yarn -> `yarn add push-sdk`
 
 ## Usage
 
