@@ -37,4 +37,4 @@ const sendNotification = async () => {
 ```
 
 ## Support
-Feature Request, Bugs and Ideas can be added [here.](https://github.com/techulus/push-github-action/issues)
+Feature Request, Bugs and Ideas can be added [here.](https://pushbytechulus.freshdesk.com/support/tickets/new)
