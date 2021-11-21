@@ -1,4 +1,5 @@
-const request = require('request');
+const axios = require("axios");
+const debug = require("debug")("push-sdk");
 
 var PushClient = function () {
   /**
@@ -8,7 +9,7 @@ var PushClient = function () {
 };
 
 PushClient.prototype = {
-  API_BASE_URL: 'https://push.techulus.com/api/v1',
+  API_BASE_URL: "https://push.techulus.com/api/v1",
 
   /**
    * Initialize the SDK using API Key
@@ -17,6 +18,7 @@ PushClient.prototype = {
    * @param apiKey
    */
   initialize: function (apiKey) {
+    debug("Initialize", apiKey);
     this.apiKey = apiKey;
   },
 
@@ -26,38 +28,45 @@ PushClient.prototype = {
    * @param title
    * @param body
    */
-  notify: function (title, body) {
-    return new Promise((resolve, reject) => {
-      if (!this.apiKey) {
-        return reject(new Error("API Key is missing"));
-      }
+  notify: async function (title, body, link = null) {
+    debug("Notify", title, body, link);
 
-      if (!(title && body)) {
-        return reject(new Error("Title and body is required"));
-      }
+    if (!this.apiKey) {
+      return reject(new Error("API Key is missing"));
+    }
 
-      request
-        .post({
-          url : `${this.API_BASE_URL}/notify/${this.apiKey}`,
-          body: {
-            "title": title,
-            "body" : body,
-          },
-          json: true,
-        }, function (err, res, body) {
-          if (err) {
-            return reject(err);
-          }
+    if (!(title && body)) {
+      return reject(new Error("Title and body is required"));
+    }
 
-          if (res.statusCode !== 200) {
-            return reject(body);
-          } else {
-            return resolve(body);
-          }
-        });
-    });
+    let requestBody = {
+      title,
+      body,
+    };
+
+    debug("Request body", requestBody);
+
+    if (link) {
+      requestBody.link = link;
+    }
+
+    try {
+      const response = await axios.post(
+        `${this.API_BASE_URL}/notify/${this.apiKey}`,
+        requestBody
+      );
+
+      debug("Send request", requestBody);
+
+      return response?.data;
+    } catch (error) {
+      debug(error.response.data);
+
+      throw new Error(
+        `[${error.response.status}] ${error.response?.data?.message}`
+      );
+    }
   },
 };
-
 
 module.exports = PushClient;
