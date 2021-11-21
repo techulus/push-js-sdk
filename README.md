@@ -1,4 +1,4 @@
-<img width="100" src="https://push.techulus.com/static/media/logo.5b69d510.svg"/>
+<img width="100" src="https://push.techulus.com/_next/image?url=%2Fimages%2Flogo.svg&w=96&q=75"/>
 
 # Push JavaScript SDK
 
