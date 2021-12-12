@@ -60,6 +60,16 @@ const sendNotification = async () => {
 };
 ```
 
+```javascript
+const sendNotification = async () => {
+  try {
+    await pushClient.notify('Title', 'Body', 'Link');
+  } catch (e) {
+    // handle error
+  }
+};
+```
+
 ## Support
 
 Feature Request, Bugs and Ideas can be added [here.](https://pushbytechulus.freshdesk.com/support/tickets/new)
