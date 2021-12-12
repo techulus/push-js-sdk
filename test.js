@@ -1,4 +1,4 @@
-const Push = require("./index");
+const { Push } = require("./lib/push");
 const pushClient = new Push(process.env.API_KEY || "api_key");
 
 const test = async () => {

@@ -20,16 +20,40 @@ To run this SDK you'll need:
 Import and initialise the SDK using your API key
 
 ```javascript
-  const Push = require('push-sdk');
-  const pushClient = new Push('your_api_key');
+const { Push } = require("push-sdk");
+const pushClient = new Push("your_api_key");
+```
+
+or (TypeScript)
+
+```typescript
+import { Push } from "push-sdk";
+const pushClient = new Push("your_api_key");
 ```
 
 ### Sending notification using `pushClient.notify` method
 
+Notification with title and body
+
 ```javascript
 const sendNotification = async () => {
   try {
-    await pushClient.notify('Title', 'Body');
+    await pushClient.notify("Title", "Body");
+  } catch (e) {
+    // handle error
+  }
+};
+```
+
+Notification with additional options (link or image)
+
+```javascript
+const sendNotification = async () => {
+  try {
+    await pushClient.notify("Title", "Body", {
+      link: "https://techulus.com",
+      image: "https://techulus.com/assets/img/logo.png",
+    });
   } catch (e) {
     // handle error
   }
@@ -37,4 +61,5 @@ const sendNotification = async () => {
 ```
 
 ## Support
+
 Feature Request, Bugs and Ideas can be added [here.](https://pushbytechulus.freshdesk.com/support/tickets/new)
