@@ -4,6 +4,8 @@
 
 Get custom real-time notifications on your iOS & Android devices
 
+**⚠️⚠️ `v2.0.0` has breaking changes, import has changed ⚠️⚠️**
+
 ## Pre-requisites
 
 To run this SDK you'll need:
@@ -54,16 +56,6 @@ const sendNotification = async () => {
       link: "https://techulus.com",
       image: "https://techulus.com/assets/img/logo.png",
     });
-  } catch (e) {
-    // handle error
-  }
-};
-```
-
-```javascript
-const sendNotification = async () => {
-  try {
-    await pushClient.notify('Title', 'Body', 'Link');
   } catch (e) {
     // handle error
   }
