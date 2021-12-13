@@ -44,11 +44,11 @@ export class Push {
 
     debug("Request body", requestBody);
 
-    if (options?.link) {
+    if (options && options.link) {
       requestBody.link = options.link;
     }
 
-    if (options?.image) {
+    if (options && options.image) {
       requestBody.image = options.image;
     }
 
@@ -60,13 +60,15 @@ export class Push {
 
       debug("Send request", requestBody);
 
-      return response?.data;
+      return response.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        debug(error.response?.data);
+        debug(error.response && error.response.data);
 
         throw new Error(
-          `[${error.response?.status}] ${error.response?.data?.message}`
+          `[${error.response && error.response.status}] ${
+            error.response && error.response.data.message
+          }`
         );
       } else {
         throw error;
