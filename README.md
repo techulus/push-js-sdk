@@ -4,7 +4,7 @@
 
 Get custom real-time notifications on your iOS & Android devices
 
-**⚠️⚠️ `v2.0.0` has breaking changes, import has changed ⚠️⚠️**
+**⚠️⚠️ `v2.x.x` has breaking changes, import has changed ⚠️⚠️**
 
 ## Pre-requisites
 
