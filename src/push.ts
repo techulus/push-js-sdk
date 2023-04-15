@@ -5,6 +5,8 @@ const debug = require("debug")("push-sdk");
 export interface IPushOptions {
   link?: string;
   image?: string;
+  channel?: string;
+  timeSensitive?: boolean;
 }
 
 interface IRequestBody extends IPushOptions {
@@ -50,6 +52,14 @@ export class Push {
 
     if (options && options.image) {
       requestBody.image = options.image;
+    }
+
+    if (options && options.channel) {
+      requestBody.channel = options.channel;
+    }
+
+    if (options && options.timeSensitive) {
+      requestBody.timeSensitive = options.timeSensitive;
     }
 
     try {

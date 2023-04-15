@@ -5,6 +5,7 @@ const title = "test title";
 const body = "test body";
 const link = "https://example.com";
 const image = "https://example.com/image.png";
+const channel = "test-channel";
 
 describe("Push client", () => {
   test("can initialise", () => {
@@ -69,5 +70,33 @@ describe("Push client", () => {
       .reply(200, { success: true });
 
     await client.notify(title, body, { link, image });
+  });
+
+  test("can send notification with channel", async () => {
+    const client = new Push("test");
+
+    nock("https://push.techulus.com/api/v1")
+      .post("/notify/test", {
+        title,
+        body,
+        channel,
+      })
+      .reply(200, { success: true });
+
+    await client.notify(title, body, { channel });
+  });
+
+  test("can send notification with time sensitive parameter", async () => {
+    const client = new Push("test");
+
+    nock("https://push.techulus.com/api/v1")
+      .post("/notify/test", {
+        title,
+        body,
+        timeSensitive: true,
+      })
+      .reply(200, { success: true });
+
+    await client.notify(title, body, { timeSensitive: true });
   });
 });
